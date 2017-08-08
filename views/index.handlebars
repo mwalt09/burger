@@ -1,0 +1,39 @@
+<h2>Eat-Da-Burger</h2>
+
+<!-- Unordered list for displaying non-eaten burgers -->
+<ul>
+  {{#each burgers}}
+    {{#unless this.devoured}}
+      <li>
+        {{this.burger_name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button type="submit">Devoure It!</button>
+        </form>
+
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<!-- Unordered list for displaying eaten burgers -->
+<ul>
+  {{#each burgers}}
+    {{#if this.devoured}}
+      <li>
+        {{this.burger_name}}
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+
+<!-- Input form for adding burgers -->
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="burger-name">Add a Burger:</label>
+    <input type="text" id="burger-name" name="name">
+  </div>
+
+</form>
