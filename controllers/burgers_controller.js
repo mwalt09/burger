@@ -15,5 +15,15 @@ router.get("/", function(req, res) {
   });
 });
 
+router.post("/", function(req, res) {
+  burger.insertOne([
+    "burger_name"
+  ], [
+    req.body.burger_name
+  ], function() {
+    res.redirect("/");
+  });
+});
+
 // Export routes for server.js to use.
 module.exports = router;
