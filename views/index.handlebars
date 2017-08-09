@@ -1,41 +1,46 @@
-<h2>Eat-Da-Burger</h2>
+<!-- <h2>Eat-Da-Burger</h2> -->
 
 <!-- Unordered list for displaying non-eaten burgers -->
-<ul>
+<div id="notEaten">
+  <div class="header">
+    <h3>Fresh of the Grill</h3>
+  </div>
   {{#each burgers}}
     {{#unless this.devoured}}
-      <li>
+      <p>
         {{this.burger_name}}
-
         <form action="/{{this.id}}?_method=PUT" method="POST">
           <input type="hidden" name="devoured" value="true">
-          <button type="submit">Devoure It!</button>
+          <button class="btn btn-warning" type="submit">Devoure It!</button>
         </form>
+      </p>
+      <hr>
 
-      </li>
     {{/unless}}
   {{/each}}
-</ul>
+</div>
 
 <!-- Unordered list for displaying eaten burgers -->
-<ul>
+<div id="eaten">
+  <div class="header">
+    <h3>Devoured</h3>
+  </div>
   {{#each burgers}}
     {{#if this.devoured}}
-      <li>
+      <p>
         {{this.burger_name}}
-      </li>
+      </p>
     {{/if}}
   {{/each}}
-</ul>
+</div>
 
 <!-- Input form for adding burgers -->
 <form class="create-update-form" action="/" method="POST">
 
   <div class="form-group">
-    <label for="burger-name">Add a Burger:</label>
-    <input type="text" id="burger-name" name="burger_name">
+    <input class="form-control" type="text" id="burger-name" name="burger_name" placeholder="Add a Burger">
   </div>
 
-  <button type="submit">Submit</button>
+  <button class="btn btn-success btn-md" type="submit">Submit</button>
 
 </form>
