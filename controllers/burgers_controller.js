@@ -1,13 +1,13 @@
 // Dependencies
 // =========================================
 // Requiring burger object containing orm calls //Import the model (burger.js) to use its database functions.
-var burger = require("../models/burger.js");
+var burgers = require("../models/burger.js");
 var express = require("express");
 var router = express.Router();
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-  burger.selectAll(function(data) {
+  burgers.selectAll(function(data) {
     var hbsObject = {
       burgers: data
     };
@@ -16,11 +16,20 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-  burger.insertOne([
+  // console.log("Result: " + req.body.burger_name);
+  burgers.insertOne([
     "burger_name"
   ], [
     req.body.burger_name
   ], function() {
+    res.redirect("/");
+  });
+});
+
+router.put("/:id", function(req, res) {
+  burgers.updateOne({
+    devoured: req.body.devoured
+  }, req.params.id, function() {
     res.redirect("/");
   });
 });

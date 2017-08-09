@@ -16,9 +16,9 @@ var orm = {
       callback(result);
     });
   },
-  updateOne: function(tableInput, objColVals, condition, callback) {
-    var queryString = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
-    connection.query(queryString, [tableInput, objColVals, condition], function(err, result) {
+  updateOne: function(tableInput, colVal, condition, callback) {
+    var queryString = "UPDATE ?? SET devoured = ? WHERE id = ?";
+    connection.query(queryString, [tableInput, colVal, condition], function(err, result) {
       if (err) throw err;
       callback(result);
     });
